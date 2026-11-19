@@ -1,0 +1,45 @@
+# Dependencies
+/vendor/
+/node_modules/
+
+# Laravel runtime and generated files
+/bootstrap/cache/*
+!/bootstrap/cache/.gitignore
+/storage/*.key
+/storage/framework/cache/*
+/storage/framework/sessions/*
+/storage/framework/testing/*
+/storage/framework/views/*
+/storage/logs/*
+
+# Local environment and credentials
+/.env
+/.env.*
+!/.env.example
+/.phpunit.cache/
+
+# Build output
+/public/build/
+/public/hot
+/public/storage
+/npm-debug.log
+/yarn-error.log
+
+# Local databases, exports, backups and uploaded documents
+/database/*.sqlite
+/database/*.sqlite-*
+/*.sql
+/*.sql.gz
+/*.dump
+/*.bak
+/storage/app/
+/public/uploads/
+
+# IDE and operating system files
+/.idea/
+/.vscode/*
+!/.vscode/extensions.json
+!/.vscode/settings.example.json
+.DS_Store
+Thumbs.db
+desktop.ini
