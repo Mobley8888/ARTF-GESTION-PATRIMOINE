@@ -4,33 +4,55 @@ Dernière mise à jour : 2026-11-19
 
 ## Situation actuelle
 
-- Le dossier local contient uniquement README, .gitignore et documentation ;
-- aucun code Laravel ni module fonctionnel ;
-- aucun dossier `.git`, fichier `artisan`, `composer.json` ou `package.json` local ;
-- dépôt GitHub public `Mobley8888/ARTF-GESTION-PATRIMOINE` visible sur la branche
-  `main`, avec un seul commit initial contenant `README.md` ;
-- le dépôt local n'est pas initialisé et n'est pas synchronisé avec le remote ;
-- aucun cahier des charges détaillé disponible dans le dossier de travail consulté ;
-- la page GitHub partagée affiche une session propriétaire `Mobley8888`.
+- Squelette Laravel 13 installé (framework `13.43.0`), compatible avec PHP 8.3 ;
+- interface d'administration Blade/Bootstrap 5 responsive avec tableau de bord et
+  navigation vers les pages Biens, Inventaires, Affectations, Maintenance et Rapports ;
+- modèle initial des catégories, lieux, directions, services, agents, biens et
+  historique des localisations implémenté par migrations et relations Eloquent ;
+- environnement local PHP `8.3.36`, Composer `2.11.2`, Node `22.23.4` et npm `10.9.9` ;
+- base SQLite locale ; migrations initiales et patrimoniales exécutées sans migration
+  destructive ; données de démonstration fictives chargées de façon idempotente ;
+- MySQL `8.4.3` disponible et vérifié par un scénario d'intégration transactionnel ;
+- dépôt Git existant sur `main`, documents initiaux conservés ; aucun push effectué ;
+- cahier des charges détaillé non trouvé dans le dossier consulté.
 
-## Blocages et prérequis
+L'authentification, les rôles et l'administration des comptes sont livrés. Le
+module des biens permet la consultation, la recherche, la création, la modification,
+l'archivage contrôlé et l'historique de localisation. Les catégories et les
+localisations hiérarchiques sont administrables et alimentent les formulaires
+des biens. Les fournisseurs, acquisitions, dotations, amortissements, inventaires,
+maintenance, immobilier, documents et journal d'audit restent à développer.
 
-Les commandes PowerShell ne peuvent pas démarrer : le sandbox signale que l'accès
-réseau local/proxy est désactivé. Les versions installées, extensions PHP, état Git,
-configuration Git locale et `gh auth status` restent donc invérifiés. Aucun paquet
-ne peut être installé ni aucun test/migration exécuté de façon fiable dans cette
-session.
+## Installation et vérifications
 
-Avant de poursuivre le développement :
+- Laravel a été créé temporairement puis fusionné sans écraser `.git`, `.gitignore`
+  ni les six documents Markdown d'origine ;
+- `.env` local créé à partir de `.env.example`, clé applicative générée ; `.env`
+  et SQLite sont exclus du versionnement ;
+- Composer utilise l'extension ZIP présente dans PHP, activée uniquement dans une
+  configuration temporaire pour cette installation (désactivée dans le `php.ini`
+  Laragon) ;
+- npm utilise `npm.cmd` sous PowerShell, car `npm.ps1` est bloqué par la stratégie
+  locale d'exécution ;
+- règles `.gitignore` d'origine conservées, avec ajout de l'exclusion du cache
+  PHPUnit généré par les tests.
 
-1. Rétablir l'exécution des commandes locales dans le sandbox ;
-2. vérifier les versions de Git, `gh`, PHP, Composer, Node.js, npm, Laragon et VS Code,
-   les extensions PHP, puis `gh auth status` ;
-3. vérifier branche, état et remotes avant d'initialiser Git localement ou de
-   synchroniser le commit distant existant ;
-4. confirmer l'adresse Git locale sans demander ni exposer de secret ;
-5. obtenir le cahier des charges officiel et confirmer les choix métier nécessaires ;
-6. choisir une installation Laravel compatible avec PHP et ajouter une interface
-   Bootstrap 5/Blade sans React, Vue, Inertia ni Tailwind ;
-7. créer puis tester l'authentification, les migrations, les autorisations, les
-   vues et les tests automatisés avant toute annonce de fonctionnement.
+- `composer install` terminé ; `npm.cmd install` sans vulnérabilité signalée ;
+- `npm.cmd run build` réussi (Vite) ;
+- `php artisan migrate` appliqué sur SQLite ; `migrate:status` confirme les migrations ;
+- `php artisan db:seed` exécuté deux fois sur SQLite : données de démonstration
+  patrimoniales fictives chargées de façon idempotente ;
+- tests SQLite : 53 tests, 47 réussis, 6 ignorés, 385 assertions ;
+- test d'intégration des référentiels MySQL `8.4.3` : 1 test, 28 assertions,
+  transaction annulée ;
+- Laravel Pint a validé le style des nouveaux fichiers PHP ;
+- dépôt `main` aligné avec `origin/main` (0 commit en avance/retard), `.env` et
+  SQLite ignorés par Git ; aucun push effectué.
+
+## Prochaines étapes
+
+1. Valider les hiérarchies, codifications, états et règles monétaires avec l'ARTF ;
+2. confirmer les exigences de données, rôles, permissions et audit ;
+3. valider les migrations et procédures de sauvegarde sur l'environnement cible ;
+4. construire acquisitions, affectations, inventaires, amortissements et autres domaines ;
+5. vérifier les changements et l'absence de secrets avant toute publication.

@@ -17,6 +17,7 @@
 /.env.*
 !/.env.example
 /.phpunit.cache/
+/.phpunit.result.cache
 
 # Build output
 /public/build/
